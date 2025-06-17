@@ -1,0 +1,20 @@
+Collecting scikit-learn
+  Downloading scikit_learn-1.3.2-cp38-cp38-macosx_12_0_arm64.whl.metadata (11 kB)
+Collecting numpy<2.0,>=1.17.3 (from scikit-learn)
+  Downloading numpy-1.24.4-cp38-cp38-macosx_11_0_arm64.whl.metadata (5.6 kB)
+Collecting scipy>=1.5.0 (from scikit-learn)
+  Downloading scipy-1.10.1-cp38-cp38-macosx_12_0_arm64.whl.metadata (53 kB)
+Collecting joblib>=1.1.1 (from scikit-learn)
+  Downloading joblib-1.4.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting threadpoolctl>=2.0.0 (from scikit-learn)
+  Downloading threadpoolctl-3.5.0-py3-none-any.whl.metadata (13 kB)
+Downloading scikit_learn-1.3.2-cp38-cp38-macosx_12_0_arm64.whl (9.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.4/9.4 MB 51.4 MB/s eta 0:00:00
+Downloading joblib-1.4.2-py3-none-any.whl (301 kB)
+Downloading numpy-1.24.4-cp38-cp38-macosx_11_0_arm64.whl (13.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.8/13.8 MB 113.2 MB/s eta 0:00:00
+Downloading scipy-1.10.1-cp38-cp38-macosx_12_0_arm64.whl (28.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 28.8/28.8 MB 92.9 MB/s eta 0:00:00
+Downloading threadpoolctl-3.5.0-py3-none-any.whl (18 kB)
+Installing collected packages: threadpoolctl, numpy, joblib, scipy, scikit-learn
+Successfully installed joblib-1.4.2 numpy-1.24.4 scikit-learn-1.3.2 scipy-1.10.1 threadpoolctl-3.5.0
