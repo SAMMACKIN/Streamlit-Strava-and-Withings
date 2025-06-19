@@ -8,9 +8,16 @@ load_dotenv()
 
 class StravaAuth:
     def __init__(self):
-        self.client_id = os.getenv('STRAVA_CLIENT_ID')
-        self.client_secret = os.getenv('STRAVA_CLIENT_SECRET')
-        self.redirect_uri = os.getenv('STRAVA_REDIRECT_URI', 'http://localhost:8501')
+        # Try Streamlit secrets first, then environment variables
+        try:
+            self.client_id = st.secrets.get('STRAVA_CLIENT_ID') or os.getenv('STRAVA_CLIENT_ID')
+            self.client_secret = st.secrets.get('STRAVA_CLIENT_SECRET') or os.getenv('STRAVA_CLIENT_SECRET')
+            self.redirect_uri = st.secrets.get('STRAVA_REDIRECT_URI') or os.getenv('STRAVA_REDIRECT_URI', 'http://localhost:8501')
+        except:
+            # Fallback to environment variables only
+            self.client_id = os.getenv('STRAVA_CLIENT_ID')
+            self.client_secret = os.getenv('STRAVA_CLIENT_SECRET')
+            self.redirect_uri = os.getenv('STRAVA_REDIRECT_URI', 'http://localhost:8501')
         self.auth_url = 'https://www.strava.com/oauth/authorize'
         self.token_url = 'https://www.strava.com/oauth/token'
     

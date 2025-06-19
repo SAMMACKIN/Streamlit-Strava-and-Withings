@@ -11,9 +11,16 @@ load_dotenv()
 
 class WithingsAuth:
     def __init__(self):
-        self.client_id = os.getenv('WITHINGS_CLIENT_ID')
-        self.client_secret = os.getenv('WITHINGS_CLIENT_SECRET')
-        self.redirect_uri = os.getenv('WITHINGS_REDIRECT_URI', 'http://localhost:8501')
+        # Try Streamlit secrets first, then environment variables
+        try:
+            self.client_id = st.secrets.get('WITHINGS_CLIENT_ID') or os.getenv('WITHINGS_CLIENT_ID')
+            self.client_secret = st.secrets.get('WITHINGS_CLIENT_SECRET') or os.getenv('WITHINGS_CLIENT_SECRET')
+            self.redirect_uri = st.secrets.get('WITHINGS_REDIRECT_URI') or os.getenv('WITHINGS_REDIRECT_URI', 'http://localhost:8501')
+        except:
+            # Fallback to environment variables only
+            self.client_id = os.getenv('WITHINGS_CLIENT_ID')
+            self.client_secret = os.getenv('WITHINGS_CLIENT_SECRET')
+            self.redirect_uri = os.getenv('WITHINGS_REDIRECT_URI', 'http://localhost:8501')
         self.auth_url = 'https://account.withings.com/oauth2_user/authorize2'
         self.token_url = 'https://wbsapi.withings.net/v2/oauth2'
         self.scope = 'user.metrics,user.activity,user.sleepevents'
