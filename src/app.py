@@ -15,8 +15,8 @@ from token_storage import TokenStorage
 
 # Page config
 st.set_page_config(
-    page_title="Strava Data Analyzer",
-    page_icon="🏃",
+    page_title="Health Data Analyzer",
+    page_icon="📊",
     layout="wide"
 )
 
