@@ -167,7 +167,19 @@ class WithingsAPI:
             
             record = {
                 'date': date,
-                'sleep_duration': sleep_session.get('data', {}).get('durationtosleep', 0) / 60,  # minutes to hours
+                # calculate duration using timestamps if possible
+                'sleep_duration': (
+                    (sleep_session['enddate'] - sleep_session['startdate']) / 3600
+                    if sleep_session.get('enddate')
+                    else (
+                        (
+                            sleep_session.get('data', {}).get('deepsleepduration', 0)
+                            + sleep_session.get('data', {}).get('lightsleepduration', 0)
+                            + sleep_session.get('data', {}).get('remsleepduration', 0)
+                        )
+                        / 60
+                    )
+                ),
                 'deep_sleep': sleep_session.get('data', {}).get('deepsleepduration', 0) / 60,
                 'light_sleep': sleep_session.get('data', {}).get('lightsleepduration', 0) / 60,
                 'rem_sleep': sleep_session.get('data', {}).get('remsleepduration', 0) / 60,
@@ -211,3 +223,4 @@ class WithingsAPI:
             df = df.reset_index(drop=True)
         
         return df
+
