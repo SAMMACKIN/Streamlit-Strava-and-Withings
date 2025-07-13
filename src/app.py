@@ -110,10 +110,16 @@ def main():
         st.subheader("🏥 Withings Health Data")
         if not withings_auth.is_authenticated():
             st.write("Connect your Withings account first to analyze your health data.")
-            
+
             if st.button("Connect to Withings"):
-                withings_auth_url = withings_auth.get_authorization_url()
-                st.markdown(f'<a href="{withings_auth_url}" target="_self">Click here to authorize Withings</a>', unsafe_allow_html=True)
+                try:
+                    withings_auth_url = withings_auth.get_authorization_url()
+                    st.markdown(
+                        f'<a href="{withings_auth_url}" target="_self">Click here to authorize Withings</a>',
+                        unsafe_allow_html=True,
+                    )
+                except Exception as e:
+                    st.error(str(e))
         else:
             st.success("✅ Connected to Withings")
             if st.button("Disconnect Withings"):
